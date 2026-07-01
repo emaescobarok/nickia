@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NICKIA · Nicolás Escobar — Estrategia de Marketing B2B</title>
+<meta name="description" content="Nicolás Escobar — Estratega de marketing B2B en Valencia, España. Ayudo a marcas, negocios y perfiles B2B a ordenar su mensaje, construir autoridad y generar resultados reales.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  /* ============ RESET / BASE ============ */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0a;
+    --fg: #f0ede8;
+    --lime: #c8ff45;
+    --muted: #666660;
+    --border: #1e1e1e;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  body.loading { overflow: hidden; height: 100vh; }
+
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  ::selection { background: var(--lime); color: #000; }
+
+  /* ============ TYPE SYSTEM ============ */
+  .h1 { font-weight: 900; letter-spacing: -0.13em; line-height: 0.9; }
+  .h2 { font-weight: 900; letter-spacing: -0.09em; line-height: 0.95; }
+  .h3 { font-weight: 700; letter-spacing: -0.03em; }
+  .h4 { font-weight: 700; letter-spacing: -0.01em; }
+  .caption {
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .lime { color: var(--lime); }
+  .muted { color: var(--muted); }
+
+  /* ============ CURSOR BLOB (VISCERA-inspired, lima) ============ */
+  #cursor-blob {
+    position: fixed; top: 0; left: 0;
+    width: 460px; height: 460px;
+    background: radial-gradient(circle, rgba(200,255,69,0.10) 0%, rgba(10,10,10,0) 68%);
+    pointer-events: none; z-index: -1;
+    will-change: transform;
+  }
+
+  /* ============ OUTLINE WATERMARK TYPE ============ */
+  .outline-type {
+    font-weight: 900; text-transform: uppercase;
+    letter-spacing: -0.05em; line-height: 0.8;
+    -webkit-text-stroke: 1px var(--fg);
+    color: transparent;
+    pointer-events: none; user-select: none;
+  }
+  /* sticky watermark behind a section list */
+  .watermark {
+    position: sticky; top: 14%;
+    font-size: clamp(80px, 15vw, 220px);
+    opacity: 0.04; z-index: 0;
+    margin-bottom: -0.4em;
+  }
+  .section-inner { position: relative; z-index: 1; }
+
+  /* ============ MARQUEE (infinite loop) ============ */
+  .marquee {
+    overflow: hidden; white-space: nowrap;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 0;
+  }
+  .marquee-inner {
+    display: inline-block;
+    animation: marquee 28s linear infinite;
+  }
+  .marquee-inner span {
+    font-weight: 900; text-transform: uppercase;
+    font-size: clamp(28px, 4vw, 52px);
+    letter-spacing: -0.03em;
+    -webkit-text-stroke: 1px var(--fg);
+    color: transparent;
+    padding: 0 8px;
+  }
+  .marquee-inner .dot { color: var(--lime); -webkit-text-stroke: 0; }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ============ MASK REVEAL ============ */
+  .mask-reveal { overflow: hidden; }
+  .mask-reveal > .mask-inner { display: block; }
+
+  /* ============ LAYOUT ============ */
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 0 48px; }
+  section { position: relative; }
+
+  /* ============ INTRO LOADER ============ */
+  #loader {
+    position: fixed; inset: 0; z-index: 1000;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+  }
+  #loader .mark {
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    font-size: clamp(48px, 12vw, 140px);
+    color: var(--fg);
+  }
+
+  /* ============ NAV ============ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1320px; margin: 0 auto; padding: 18px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .wordmark {
+    font-weight: 900; letter-spacing: -0.05em; font-size: 20px; color: var(--fg);
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--muted); font-weight: 500; transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: #f0ede8; }
+
+  /* ============ HERO (editorial type-over-photo) ============ */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* centered floating portrait (nudged up to clear the bottom bar) */
+  .hero-photo {
+    position: absolute;
+    top: 44%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(280px, 34vw, 480px);
+    height: clamp(440px, 88vh, 820px);
+    object-fit: cover; object-position: center top;
+    mix-blend-mode: lighten;
+    z-index: 1;
+    will-change: transform;
+    pointer-events: none;
+  }
+  /* giant overlapping type */
+  .hero-type {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+    pointer-events: none;
+    transform: translateY(-6vh);
+  }
+  .hero-word {
+    display: block;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.82;
+    letter-spacing: -0.05em;
+    font-size: clamp(72px, 17vw, 260px);
+    will-change: transform;
+  }
+  .hero-word.filled { color: var(--fg); }
+  .hero-word.outline {
+    -webkit-text-stroke: 1px var(--fg);
+    color: transparent;
+    opacity: 0.22;
+    /* gap between the two words so the face shows through, framed */
+    margin-top: clamp(150px, 26vh, 340px);
+  }
+  /* meta bars */
+  .hero-top, .hero-bottom {
+    position: absolute;
+    left: 0; right: 0;
+    z-index: 3;
+    padding: 0 48px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .hero-top { top: 104px; align-items: flex-start; }
+  .hero-bottom { bottom: 48px; }
+  .hero-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--muted); font-weight: 500; max-width: 240px;
+  }
+  .hero-tag {
+    font-weight: 900; font-size: 18px; color: var(--lime); letter-spacing: -0.01em;
+  }
+  .hero-sub {
+    font-weight: 300; font-size: 16px; color: #aaa;
+    max-width: 340px; line-height: 1.55;
+  }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* stats strip below hero */
+  .stats-strip { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  /* ============ BUTTONS ============ */
+  .btn {
+    display: inline-block;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 14px 28px; border: 1px solid transparent;
+    transition: all 0.2s ease; cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--lime); color: #000; font-weight: 700;
+  }
+  .btn-primary:hover { background: #d6ff6a; }
+  .btn-ghost {
+    background: transparent; border: 1px solid #2a2a2a; color: #666660; font-weight: 500;
+  }
+  .btn-ghost:hover { border-color: #f0ede8; color: #f0ede8; }
+
+  /* ============ HERO STATS ============ */
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .hero-stats .stat {
+    padding: 40px 32px;
+    border-left: 1px solid var(--border);
+    text-align: center;
+  }
+  .hero-stats .stat:first-child { border-left: none; }
+  .stat-val { font-weight: 900; font-size: 28px; letter-spacing: -0.03em; line-height: 1; }
+  .stat-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); margin-top: 8px; font-weight: 500;
+  }
+
+  /* ============ GENERIC SECTION PADDING ============ */
+  .section-pad { padding: 120px 0; }
+
+  /* ============ WHY ============ */
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .why-title {
+    font-weight: 900; letter-spacing: -0.03em; line-height: 1;
+    font-size: clamp(40px, 5vw, 64px);
+  }
+  .why-text p { font-weight: 300; font-size: 17px; color: #888880; line-height: 1.65; margin-bottom: 24px; max-width: 480px; }
+  .why-divider { height: 1px; background: var(--border); margin: 32px 0; max-width: 480px; }
+  .pullquote {
+    font-weight: 300; font-style: italic; font-size: 20px; color: #666660;
+    line-height: 1.5; max-width: 480px;
+  }
+
+  /* ============ SECTION HEADER ============ */
+  .sec-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 56px; border-bottom: 1px solid var(--border); padding-bottom: 24px;
+  }
+  .sec-title { font-weight: 900; letter-spacing: -0.04em; font-size: clamp(34px, 5vw, 48px); }
+
+  /* ============ SERVICES ============ */
+  .service {
+    display: grid; grid-template-columns: 60px 1fr 1.1fr;
+    gap: 32px; align-items: start;
+    padding: 36px 0; border-top: 1px solid var(--border);
+    transition: border-color 0.2s ease;
+  }
+  .service:last-child { border-bottom: 1px solid var(--border); }
+  .service:hover { border-top-color: #444; }
+  .service-num { font-weight: 300; font-size: 13px; color: #3d3d3d; transition: color 0.2s ease; padding-top: 6px; }
+  .service-cat {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); font-weight: 500; margin-bottom: 10px;
+  }
+  .service-name { font-weight: 700; font-size: 22px; letter-spacing: -0.01em; }
+  .service-desc { font-weight: 300; font-size: 15px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 6px 12px; border: 1px solid var(--border); color: var(--muted); font-weight: 500;
+  }
+
+  /* ============ DIFERENCIAL ============ */
+  .diff-row {
+    display: grid;
+    grid-template-columns: 48px 1fr 1fr;
+    gap: 0 48px;
+    align-items: start;
+    padding: 52px 0;
+    border-top: 1px solid #1e1e1e;
+  }
+  .diff-row:last-child { border-bottom: 1px solid #1e1e1e; }
+  .diff-n {
+    font-size: 13px;
+    color: #3d3d3d;
+    font-weight: 300;
+    padding-top: 8px;
+  }
+  .diff-title {
+    font-size: clamp(32px, 3vw, 44px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    color: #f0ede8;
+  }
+  .diff-desc {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.72;
+    color: #666660;
+    padding-top: 8px;
+  }
+
+  /* ============ CLIENTES ============ */
+  .clients { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); }
+  .client {
+    background: transparent; border: none;
+    padding: 48px 32px; border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .client:last-child { border-right: none; }
+  .client-name { font-weight: 700; font-size: 18px; letter-spacing: -0.01em; margin-bottom: 12px; color: #f0ede8; }
+  .client-type { font-size: 12px; color: #3d3d3d; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; }
+  .client-name.lime { color: var(--lime); }
+
+  /* ============ SISTEMA IA ============ */
+  .ia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .ia-title { font-weight: 900; font-size: 32px; letter-spacing: -0.02em; margin-bottom: 24px; color: #f0ede8; }
+  .ia-text { font-weight: 300; font-size: 17px; color: #888880; line-height: 1.65; margin-bottom: 32px; max-width: 460px; }
+  .step {
+    display: grid; grid-template-columns: 48px 1fr; gap: 20px; align-items: center;
+    padding: 24px 0; border-top: 1px solid var(--border);
+  }
+  .step:last-child { border-bottom: 1px solid var(--border); }
+  .step-num { font-weight: 900; font-size: 18px; color: #3d3d3d; letter-spacing: -0.02em; }
+  .step-text { font-weight: 300; font-size: 16px; color: var(--fg); }
+
+  /* ============ CONTACTO ============ */
+  #contacto { padding: 160px 0; position: relative; overflow: hidden; }
+  #contacto .wrap { position: relative; z-index: 1; }
+  .contact-watermark {
+    position: absolute; bottom: -0.16em; left: 50%; transform: translateX(-50%);
+    font-size: clamp(120px, 26vw, 420px); white-space: nowrap;
+    opacity: 0.04; z-index: 0;
+  }
+  .contact-title {
+    font-weight: 900; letter-spacing: -0.04em; line-height: 0.92;
+    font-size: clamp(56px, 9vw, 100px);
+  }
+  .contact-sub { font-weight: 300; font-size: 18px; color: #bdbab5; max-width: 520px; margin-top: 32px; line-height: 1.6; }
+  .contact-ctas { display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap; }
+  .contact-note { font-size: 12px; color: var(--muted); margin-top: 28px; font-weight: 300; }
+
+  /* ============ FOOTER ============ */
+  footer { border-top: 1px solid var(--border); padding: 40px 0; }
+  .footer-inner { display: flex; align-items: center; justify-content: space-between; }
+  .footer-left { font-weight: 500; font-size: 13px; letter-spacing: 0.02em; }
+  .footer-right { font-size: 13px; color: var(--muted); font-weight: 300; }
+
+  /* ============ REVEAL DEFAULTS ============ */
+  .reveal { opacity: 0; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 768px) {
+    .wrap { padding: 0 24px; }
+    .nav-inner { padding: 16px 24px; }
+    .nav-links { gap: 18px; }
+
+    #hero { min-height: 100vh; }
+    .hero-photo { width: 66vw; height: 58vh; max-height: 560px; top: 46%; }
+    .hero-type { transform: translateY(-3vh); }
+    .hero-word { font-size: clamp(38px, 13vw, 78px); }
+    .hero-word.outline { margin-top: clamp(70px, 12vh, 140px); }
+    .hero-top, .hero-bottom { padding: 0 24px; }
+    .hero-top { top: 88px; flex-direction: column; align-items: flex-start; gap: 6px; }
+    .hero-tag { font-size: 16px; }
+    .hero-bottom { flex-direction: column; align-items: flex-start; gap: 18px; bottom: 28px; }
+    .hero-sub { max-width: 100%; font-size: 14px; }
+    .hero-ctas { width: 100%; }
+    .hero-ctas .btn { flex: 1 1 auto; text-align: center; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .hero-stats .stat { padding: 28px 20px; }
+    .hero-stats .stat:nth-child(3), .hero-stats .stat:nth-child(4) { border-top: 1px solid var(--border); }
+    .hero-stats .stat:nth-child(3) { border-left: none; }
+
+    .section-pad { padding: 72px 0; }
+    .why-grid { grid-template-columns: 1fr; gap: 40px; }
+    .diff-row { grid-template-columns: 36px 1fr; gap: 0 16px; padding: 40px 0; }
+    .diff-row .diff-desc { grid-column: 2 / -1; padding-top: 16px; }
+    .clients { grid-template-columns: 1fr 1fr; }
+    .client { border-bottom: 1px solid var(--border); }
+    .client:nth-child(2n) { border-right: none; }
+    .ia-grid { grid-template-columns: 1fr; gap: 48px; }
+    .service { grid-template-columns: 40px 1fr; gap: 16px; }
+    .service-desc-col { grid-column: 1 / -1; }
+    #contacto { padding: 90px 0; }
+    .footer-inner { flex-direction: column; gap: 16px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body class="loading">
+
+  <!-- CURSOR BLOB -->
+  <div id="cursor-blob"></div>
+
+  <!-- INTRO LOADER -->
+  <div id="loader"><div class="mark">NICKIA</div></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#hero" class="wordmark">NICKIA</a>
+      <div class="nav-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#clientes">Clientes</a>
+        <a href="#contacto">Hablemos</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <img src="nicolas.jpeg" alt="Nicolás Escobar" class="hero-photo" id="hero-photo">
+
+    <div class="hero-type">
+      <span class="hero-word filled parallax-text" data-speed="-1.4">NICKIA</span>
+      <span class="hero-word outline parallax-text" data-speed="1.4">Estratega</span>
+    </div>
+
+    <div class="hero-top">
+      <span class="hero-label reveal">Estrategia de Marketing · Valencia, España</span>
+      <span class="hero-tag reveal">Already thinking.</span>
+    </div>
+
+    <div class="hero-bottom">
+      <p class="hero-sub reveal">Ayudo a marcas, negocios y perfiles B2B a ordenar su mensaje, construir autoridad y generar resultados reales.</p>
+      <div class="hero-ctas reveal">
+        <a href="#contacto" class="btn btn-primary">Hablemos de tu proyecto</a>
+        <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-val">8+</div><div class="stat-label">Años de experiencia</div></div>
+      <div class="stat"><div class="stat-val">B2B</div><div class="stat-label">Foco estratégico</div></div>
+      <div class="stat"><div class="stat-val">IA</div><div class="stat-label">Sistema propio</div></div>
+      <div class="stat"><div class="stat-val">ES · AR</div><div class="stat-label">España y Argentina</div></div>
+    </div>
+  </div>
+
+  <!-- POR QUÉ -->
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="why-grid">
+        <h2 class="why-title mask-reveal">No vendés<br>productos.<br>Vendés<br>criterio.</h2>
+        <div class="why-text">
+          <p class="reveal">Llevo más de ocho años acompañando marcas y negocios en estrategia, comunicación y crecimiento. Lo que aprendí en ese tiempo es que la mayoría de los problemas de marketing no son problemas de herramientas ni de presupuesto. Son problemas de claridad.</p>
+          <p class="reveal">Mi trabajo es ordenar ese desorden. Traducir la complejidad en dirección concreta. Y construir sistemas que funcionen más allá de mi presencia constante.</p>
+          <div class="why-divider reveal"></div>
+          <p class="pullquote reveal"><em>La inteligencia artificial no reemplaza el criterio. Lo amplifica.</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-inner">
+      <span>Estrategia</span><span class="dot">—</span><span>Autoridad</span><span class="dot">—</span><span>Criterio</span><span class="dot">—</span><span>Sistemas</span><span class="dot">—</span><span>Resultados</span><span class="dot">—</span>
+      <span>Estrategia</span><span class="dot">—</span><span>Autoridad</span><span class="dot">—</span><span>Criterio</span><span class="dot">—</span><span>Sistemas</span><span class="dot">—</span><span>Resultados</span><span class="dot">—</span>
+    </div>
+  </div>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="section-pad">
+    <div class="wrap">
+      <div class="outline-type watermark">Servicios</div>
+      <div class="section-inner">
+      <div class="sec-head">
+        <h2 class="sec-title mask-reveal">Servicios</h2>
+        <span class="caption reveal">Lo que hago</span>
+      </div>
+      <div class="services">
+        <div class="service">
+          <div class="service-num">01</div>
+          <div><div class="service-cat">Estrategia</div><div class="service-name">Consultoría Estratégica</div></div>
+          <div class="service-desc-col">
+            <p class="service-desc">Diagnóstico, posicionamiento y hoja de ruta de marketing. Para negocios que necesitan ordenar su mensaje y definir hacia dónde van antes de ejecutar.</p>
+            <div class="tags"><span class="tag">Diagnóstico</span><span class="tag">Posicionamiento</span><span class="tag">Roadmap</span></div>
+          </div>
+        </div>
+        <div class="service">
+          <div class="service-num">02</div>
+          <div><div class="service-cat">Contenido</div><div class="service-name">Gestión de Redes y Contenido</div></div>
+          <div class="service-desc-col">
+            <p class="service-desc">Dirección estratégica de contenido para marcas y perfiles B2B. No publicaciones por publicar — contenido que construye autoridad y genera conversaciones reales.</p>
+            <div class="tags"><span class="tag">LinkedIn</span><span class="tag">Instagram</span><span class="tag">Dirección creativa</span></div>
+          </div>
+        </div>
+        <div class="service">
+          <div class="service-num">03</div>
+          <div><div class="service-cat">Paid Media</div><div class="service-name">Meta Ads</div></div>
+          <div class="service-desc-col">
+            <p class="service-desc">Campañas con criterio creativo y estratégico. Diversidad creativa, estructura optimizada para el algoritmo de 2026 y seguimiento real de resultados.</p>
+            <div class="tags"><span class="tag">Meta Ads</span><span class="tag">Diversidad creativa</span><span class="tag">Andromeda</span></div>
+          </div>
+        </div>
+        <div class="service">
+          <div class="service-num">04</div>
+          <div><div class="service-cat">Marca Personal</div><div class="service-name">Personal Branding</div></div>
+          <div class="service-desc-col">
+            <p class="service-desc">Para profesionales y fundadores que quieren construir una marca personal que abra puertas, genere confianza y posicione su criterio en su industria.</p>
+            <div class="tags"><span class="tag">Narrativa</span><span class="tag">Contenido propio</span><span class="tag">Autoridad</span></div>
+          </div>
+        </div>
+        <div class="service">
+          <div class="service-num">05</div>
+          <div><div class="service-cat">IA Aplicada</div><div class="service-name">Consultoría IA para Negocios</div></div>
+          <div class="service-desc-col">
+            <p class="service-desc">Implementación de sistemas de inteligencia artificial en procesos de marketing, comunicación y operación. Sin promesas exageradas. Con resultados medibles.</p>
+            <div class="tags"><span class="tag">Sistemas IA</span><span class="tag">Automatización</span><span class="tag">Integración</span></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAL -->
+  <section id="diferencial" class="section-pad">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="sec-title mask-reveal">Diferencial</h2>
+        <span class="caption reveal">Cómo trabajo</span>
+      </div>
+      <div class="diff-list">
+        <div class="diff-row reveal">
+          <span class="diff-n">01</span>
+          <h3 class="diff-title">Estrategia antes<br>que ejecución.</h3>
+          <p class="diff-desc">No soy una agencia de volumen. Trabajo con pocos clientes, bien, y con foco en el resultado de negocio — no en métricas de vanidad.</p>
+        </div>
+        <div class="diff-row reveal">
+          <span class="diff-n">02</span>
+          <h3 class="diff-title">Contexto antes<br>de acción.</h3>
+          <p class="diff-desc">No ejecuto sin entender la situación real. Cada decisión parte de un diagnóstico claro, no de suposiciones ni tendencias genéricas.</p>
+        </div>
+        <div class="diff-row reveal">
+          <span class="diff-n">03</span>
+          <h3 class="diff-title">Sistemas, no<br>piezas sueltas.</h3>
+          <p class="diff-desc">Pienso en procesos replicables y frameworks escalables. No en acciones aisladas que dependen de mi presencia constante.</p>
+        </div>
+        <div class="diff-row reveal">
+          <span class="diff-n">04</span>
+          <h3 class="diff-title">Marketing conectado<br>al negocio.</h3>
+          <p class="diff-desc">El marketing no es comunicación decorativa. Es la herramienta que conecta la propuesta de valor de un negocio con sus objetivos reales.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTES -->
+  <section id="clientes" class="section-pad">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="sec-title mask-reveal">Clientes</h2>
+        <span class="caption reveal">Con quién trabajo</span>
+      </div>
+      <div class="clients">
+        <div class="client reveal"><div class="client-name">Flama Eyewear</div><div class="client-type">B2B · Óptica independiente</div></div>
+        <div class="client reveal"><div class="client-name">Daniel Marín</div><div class="client-type">Marca personal · Profesional</div></div>
+        <div class="client reveal"><div class="client-name">Feet Up Group</div><div class="client-type">Negocio · Servicios</div></div>
+        <div class="client reveal"><div class="client-name lime">Tu negocio</div><div class="client-type">El próximo proyecto</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SISTEMA IA -->
+  <section id="ia" class="section-pad">
+    <div class="wrap">
+      <div class="ia-grid">
+        <div>
+          <h3 class="ia-title reveal">Sistema propio con IA</h3>
+          <p class="ia-text reveal">Trabajo con un sistema de agentes de inteligencia artificial que me permite operar con más velocidad, consistencia y foco estratégico. El resultado para el cliente: menos fricciones, más claridad, entrega más rápida.</p>
+          <div class="tags reveal">
+            <span class="tag">Claude API</span><span class="tag">OpenClaw</span><span class="tag">Notion</span>
+            <span class="tag">Meta API</span><span class="tag">ElevenLabs</span><span class="tag">Higgsfield</span>
+          </div>
+        </div>
+        <div class="ia-steps">
+          <div class="step reveal"><div class="step-num">01</div><div class="step-text">Brief del cliente vía Telegram</div></div>
+          <div class="step reveal"><div class="step-num">02</div><div class="step-text">Análisis estratégico con IA</div></div>
+          <div class="step reveal"><div class="step-num">03</div><div class="step-text">Producción de contenido / campaña</div></div>
+          <div class="step reveal"><div class="step-num">04</div><div class="step-text">Revisión y criterio humano</div></div>
+          <div class="step reveal"><div class="step-num">05</div><div class="step-text">Entrega y seguimiento</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="outline-type contact-watermark" aria-hidden="true">NICKIA</div>
+    <div class="wrap">
+      <h2 class="contact-title mask-reveal">Hablemos de<br><span class="lime">tu proyecto.</span></h2>
+      <p class="contact-sub reveal">Si tu negocio necesita ordenar su mensaje, construir autoridad o escalar resultados, estoy disponible para nuevos proyectos.</p>
+      <div class="contact-ctas reveal">
+        <a href="https://t.me/escobarrnicolas" target="_blank" rel="noopener" class="btn btn-primary">Escribime por Telegram</a>
+        <a href="mailto:hola@nicolasescobar.com" class="btn btn-ghost">hola@nicolasescobar.com</a>
+      </div>
+      <div class="contact-note reveal">Respondo en menos de 24h · Valencia, España</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <div class="footer-left">NICKIA · Already thinking.</div>
+        <div class="footer-right">© 2026 · Valencia, España</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const body = document.body;
+
+    // ---------- CURSOR BLOB (disabled on touch) ----------
+    const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    const blob = document.getElementById('cursor-blob');
+    if (isTouch) {
+      blob.style.display = 'none';
+    } else {
+      let bx = window.innerWidth / 2, by = window.innerHeight / 2;
+      const half = 230; // half of blob size (460)
+      const quickX = gsap.quickTo(blob, 'x', { duration: 0.5, ease: 'power3' });
+      const quickY = gsap.quickTo(blob, 'y', { duration: 0.5, ease: 'power3' });
+      gsap.set(blob, { xPercent: 0, yPercent: 0, x: bx - half, y: by - half });
+      window.addEventListener('mousemove', (e) => {
+        quickX(e.clientX - half);
+        quickY(e.clientY - half);
+      });
+    }
+
+    // ---------- MASK REVEAL (wrap inner, slide up from below) ----------
+    gsap.utils.toArray('.mask-reveal').forEach(el => {
+      const inner = document.createElement('span');
+      inner.className = 'mask-inner';
+      inner.innerHTML = el.innerHTML;
+      el.innerHTML = '';
+      el.appendChild(inner);
+      gsap.set(inner, { yPercent: 110 });
+      ScrollTrigger.create({
+        trigger: el, start: 'top 85%',
+        onEnter: () => gsap.to(inner, { yPercent: 0, duration: 1, ease: 'power4.out' })
+      });
+    });
+
+    // ---------- INTRO LOADER ----------
+    window.addEventListener('load', () => {
+      const tl = gsap.timeline();
+      tl.set('#loader .mark', { opacity: 0, scale: 0.96 })
+        .to('#loader .mark', { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' })
+        .to('#loader .mark', { opacity: 0, scale: 1.04, duration: 0.5, ease: 'power2.in' }, '+=0.8')
+        .to('#loader', { opacity: 0, duration: 0.4, ease: 'power1.out',
+            onComplete: () => {
+              document.getElementById('loader').style.display = 'none';
+              body.classList.remove('loading');
+              ScrollTrigger.refresh();
+            }
+        }, '-=0.1')
+        .add(introHero);
+    });
+
+    // ---------- HERO REVEAL ----------
+    // initial states
+    gsap.set('.hero-photo', { xPercent: -50, yPercent: -50, opacity: 0, scale: 1.06 });
+    gsap.set('.hero-word', { opacity: 0, y: 60 });
+    gsap.set('#hero .reveal', { opacity: 0, y: 24 });
+
+    function introHero() {
+      const tl = gsap.timeline();
+      tl.to('.hero-photo', { opacity: 1, scale: 1, duration: 1.1, ease: 'power3.out' })
+        .to('.hero-word', { opacity: 1, y: 0, duration: 0.9, stagger: 0.08, ease: 'power4.out' }, '-=0.8')
+        .to('#hero .reveal', { opacity: 1, y: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out' }, '-=0.5');
+    }
+
+    // ---------- PARALLAX PHOTO (vertical) ----------
+    gsap.to('.hero-photo', {
+      y: '18%', ease: 'none',
+      scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+    // ---------- PARALLAX TYPE (horizontal, opposite directions) ----------
+    gsap.utils.toArray('.parallax-text').forEach(el => {
+      const speed = parseFloat(el.getAttribute('data-speed')) || 0;
+      gsap.to(el, {
+        x: () => speed * 90, ease: 'none',
+        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+      });
+    });
+
+    // ---------- GENERIC SCROLL REVEALS ----------
+    // Titles & blocks rise from below with stagger
+    gsap.utils.toArray('section:not(#hero)').forEach(sec => {
+      const items = sec.querySelectorAll('.reveal');
+      if (!items.length) return;
+      gsap.fromTo(items,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1, y: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out',
+          scrollTrigger: { trigger: sec, start: 'top 78%' }
+        }
+      );
+    });
+
+    // ---------- LIST ITEMS (services / steps / clients) sequential ----------
+    function staggerList(selector, parent) {
+      gsap.utils.toArray(parent).forEach(p => {
+        const rows = p.querySelectorAll(selector);
+        gsap.fromTo(rows,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'power2.out',
+            scrollTrigger: { trigger: p, start: 'top 80%' }
+          }
+        );
+      });
+    }
+    staggerList('.service', '.services');
+    staggerList('.step', '.ia-steps');
+
+    // ---------- STATS STRIP reveal ----------
+    gsap.fromTo('.hero-stats .stat',
+      { opacity: 0, y: 24 },
+      {
+        opacity: 1, y: 0, duration: 0.7, stagger: 0.08, ease: 'power2.out',
+        scrollTrigger: { trigger: '.stats-strip', start: 'top 88%' }
+      }
+    );
+  </script>
+</body>
+</html>
