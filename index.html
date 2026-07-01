@@ -395,8 +395,8 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: stretch;
-      padding: 100px 24px 56px;
-      gap: 28px;
+      padding: 88px 24px 48px;
+      gap: 20px;
     }
     .hero-top {
       position: static; order: 0; padding: 0;
@@ -406,8 +406,10 @@
     .hero-photo {
       position: static; order: 1;
       transform: none;
-      width: 74%; max-width: 300px; height: 44vh; max-height: 400px;
+      width: 72%; max-width: 290px; height: 38vh; max-height: 360px;
       margin: 0 auto;
+      /* crop the black top of the portrait so the face sits high in the box */
+      object-position: center 88%;
     }
     .hero-type {
       position: static; order: 2;
