@@ -389,16 +389,37 @@
     .nav-inner { padding: 16px 24px; }
     .nav-links { gap: 18px; }
 
-    #hero { min-height: 100vh; }
-    .hero-photo { width: 66vw; height: 58vh; max-height: 560px; top: 46%; }
-    .hero-type { transform: translateY(-3vh); }
-    .hero-word { font-size: clamp(38px, 13vw, 78px); }
-    .hero-word.outline { margin-top: clamp(70px, 12vh, 140px); }
-    .hero-top, .hero-bottom { padding: 0 24px; }
-    .hero-top { top: 88px; flex-direction: column; align-items: flex-start; gap: 6px; }
-    .hero-tag { font-size: 16px; }
-    .hero-bottom { flex-direction: column; align-items: flex-start; gap: 18px; bottom: 28px; }
-    .hero-sub { max-width: 100%; font-size: 14px; }
+    /* MOBILE HERO: stacked flow layout (no overlap) */
+    #hero {
+      min-height: auto;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      padding: 100px 24px 56px;
+      gap: 28px;
+    }
+    .hero-top {
+      position: static; order: 0; padding: 0;
+      flex-direction: column; align-items: flex-start; gap: 8px;
+    }
+    .hero-tag { font-size: 17px; }
+    .hero-photo {
+      position: static; order: 1;
+      transform: none;
+      width: 74%; max-width: 300px; height: 44vh; max-height: 400px;
+      margin: 0 auto;
+    }
+    .hero-type {
+      position: static; order: 2;
+      transform: none;
+    }
+    .hero-word { font-size: clamp(48px, 15vw, 92px); }
+    .hero-word.outline { margin-top: 6px; }
+    .hero-bottom {
+      position: static; order: 3; padding: 0;
+      flex-direction: column; align-items: flex-start; gap: 18px;
+    }
+    .hero-sub { max-width: 100%; font-size: 15px; }
     .hero-ctas { width: 100%; }
     .hero-ctas .btn { flex: 1 1 auto; text-align: center; }
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
@@ -703,8 +724,14 @@
     });
 
     // ---------- HERO REVEAL ----------
-    // initial states
-    gsap.set('.hero-photo', { xPercent: -50, yPercent: -50, opacity: 0, scale: 1.06 });
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+    // initial states (desktop centers the photo via xPercent/yPercent; mobile is stacked flow)
+    if (isMobile) {
+      gsap.set('.hero-photo', { opacity: 0, scale: 1.03 });
+    } else {
+      gsap.set('.hero-photo', { xPercent: -50, yPercent: -50, opacity: 0, scale: 1.06 });
+    }
     gsap.set('.hero-word', { opacity: 0, y: 60 });
     gsap.set('#hero .reveal', { opacity: 0, y: 24 });
 
@@ -715,20 +742,22 @@
         .to('#hero .reveal', { opacity: 1, y: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out' }, '-=0.5');
     }
 
-    // ---------- PARALLAX PHOTO (vertical) ----------
-    gsap.to('.hero-photo', {
-      y: '18%', ease: 'none',
-      scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
-    });
-
-    // ---------- PARALLAX TYPE (horizontal, opposite directions) ----------
-    gsap.utils.toArray('.parallax-text').forEach(el => {
-      const speed = parseFloat(el.getAttribute('data-speed')) || 0;
-      gsap.to(el, {
-        x: () => speed * 90, ease: 'none',
+    // ---------- PARALLAX (desktop only — breaks the stacked mobile layout) ----------
+    if (!isMobile) {
+      // photo vertical
+      gsap.to('.hero-photo', {
+        y: '18%', ease: 'none',
         scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
       });
-    });
+      // type horizontal, opposite directions
+      gsap.utils.toArray('.parallax-text').forEach(el => {
+        const speed = parseFloat(el.getAttribute('data-speed')) || 0;
+        gsap.to(el, {
+          x: () => speed * 90, ease: 'none',
+          scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+        });
+      });
+    }
 
     // ---------- GENERIC SCROLL REVEALS ----------
     // Titles & blocks rise from below with stagger
