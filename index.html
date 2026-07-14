@@ -348,10 +348,27 @@
   .reveal { opacity: 0; }
 
   /* ============ RESPONSIVE ============ */
+
+  /* --- TABLET / SMALL LAPTOP --- */
+  @media (max-width: 1024px) {
+    .wrap { padding: 0 32px; }
+    .nav-inner { padding: 18px 32px; }
+    .section-pad, .statement { padding: 96px 0; }
+    .statement-grid { gap: 40px; }
+    .service { grid-template-columns: 44px 1fr 1.1fr; gap: 24px; }
+    .case { gap: 32px; }
+    .about-grid { grid-template-columns: 1fr 1.1fr; gap: 44px; }
+    .diff-lead { font-size: clamp(20px, 2.8vw, 26px); }
+    #contacto { padding: 120px 0; }
+  }
+
+  /* --- MOBILE --- */
   @media (max-width: 768px) {
     .wrap { padding: 0 24px; }
     .nav-inner { padding: 16px 24px; }
-    .nav-links { gap: 18px; }
+    .nav-links { gap: 14px; }
+    .nav-links a { font-size: 10px; letter-spacing: 0.08em; }
+    .wordmark { font-size: 18px; }
     .wordmark .tagline { display: none; }
 
     /* MOBILE HERO: stacked flow layout */
