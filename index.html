@@ -3,19 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NICKIA · Nicolás Escobar — Estrategia de Marketing B2B</title>
-<meta name="description" content="Nicolás Escobar — Estratega de marketing B2B en Valencia, España. Ayudo a marcas, negocios y perfiles B2B a ordenar su mensaje, construir autoridad y generar resultados reales.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<title>NICKIA · Nicolás Escobar — Marketing Strategist</title>
+<meta name="description" content="Nicolás Escobar — Marketing Strategist en Valencia, España. El problema casi nunca es la ejecución. Es que falta dirección. Estrategia, contenido, paid media y marca personal para negocios y profesionales B2B.">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 <style>
   /* ============ RESET / BASE ============ */
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --bg: #0a0a0a;
+    --bg: #080808;
     --fg: #f0ede8;
-    --lime: #c8ff45;
+    --lime: #c8ff00;
     --muted: #666660;
     --border: #1e1e1e;
   }
@@ -25,8 +24,8 @@
   body {
     background: var(--bg);
     color: var(--fg);
-    font-family: 'Inter', sans-serif;
-    font-weight: 300;
+    font-family: 'Switzer', sans-serif;
+    font-weight: 400;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -41,10 +40,6 @@
   ::selection { background: var(--lime); color: #000; }
 
   /* ============ TYPE SYSTEM ============ */
-  .h1 { font-weight: 900; letter-spacing: -0.13em; line-height: 0.9; }
-  .h2 { font-weight: 900; letter-spacing: -0.09em; line-height: 0.95; }
-  .h3 { font-weight: 700; letter-spacing: -0.03em; }
-  .h4 { font-weight: 700; letter-spacing: -0.01em; }
   .caption {
     font-weight: 500;
     letter-spacing: 0.2em;
@@ -55,11 +50,11 @@
   .lime { color: var(--lime); }
   .muted { color: var(--muted); }
 
-  /* ============ CURSOR BLOB (VISCERA-inspired, lima) ============ */
+  /* ============ CURSOR BLOB (lima glow, no gradient decoration) ============ */
   #cursor-blob {
     position: fixed; top: 0; left: 0;
     width: 460px; height: 460px;
-    background: radial-gradient(circle, rgba(200,255,69,0.10) 0%, rgba(10,10,10,0) 68%);
+    background: radial-gradient(circle, rgba(200,255,0,0.08) 0%, rgba(8,8,8,0) 68%);
     pointer-events: none; z-index: -1;
     will-change: transform;
   }
@@ -72,7 +67,6 @@
     color: transparent;
     pointer-events: none; user-select: none;
   }
-  /* sticky watermark behind a section list */
   .watermark {
     position: sticky; top: 14%;
     font-size: clamp(80px, 15vw, 220px);
@@ -81,17 +75,14 @@
   }
   .section-inner { position: relative; z-index: 1; }
 
-  /* ============ MARQUEE (infinite loop) ============ */
+  /* ============ MARQUEE ============ */
   .marquee {
     overflow: hidden; white-space: nowrap;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     padding: 40px 0;
   }
-  .marquee-inner {
-    display: inline-block;
-    animation: marquee 28s linear infinite;
-  }
+  .marquee-inner { display: inline-block; animation: marquee 28s linear infinite; }
   .marquee-inner span {
     font-weight: 900; text-transform: uppercase;
     font-size: clamp(28px, 4vw, 52px);
@@ -130,7 +121,7 @@
   /* ============ NAV ============ */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(10,10,10,0.85);
+    background: rgba(8,8,8,0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
@@ -141,6 +132,10 @@
   }
   .wordmark {
     font-weight: 900; letter-spacing: -0.05em; font-size: 20px; color: var(--fg);
+    display: flex; align-items: baseline; gap: 10px;
+  }
+  .wordmark .tagline {
+    font-weight: 500; font-size: 12px; letter-spacing: 0.02em; color: var(--muted);
   }
   .nav-links { display: flex; gap: 32px; }
   .nav-links a {
@@ -149,7 +144,7 @@
   }
   .nav-links a:hover { color: #f0ede8; }
 
-  /* ============ HERO (editorial type-over-photo) ============ */
+  /* ============ HERO ============ */
   #hero {
     position: relative;
     min-height: 100vh;
@@ -158,27 +153,26 @@
     align-items: center;
     justify-content: center;
   }
-  /* centered floating portrait (nudged up to clear the bottom bar) */
   .hero-photo {
     position: absolute;
-    top: 44%; left: 50%;
+    top: 36%; left: 50%;
     transform: translate(-50%, -50%);
-    width: clamp(280px, 34vw, 480px);
-    height: clamp(440px, 88vh, 820px);
+    width: clamp(400px, 56vw, 820px);
+    height: clamp(600px, 122vh, 1220px);
     object-fit: cover; object-position: center top;
     mix-blend-mode: lighten;
     z-index: 1;
     will-change: transform;
     pointer-events: none;
   }
-  /* giant overlapping type */
   .hero-type {
     position: relative;
     z-index: 2;
     width: 100%;
     text-align: center;
     pointer-events: none;
-    transform: translateY(-6vh);
+    /* push the wordmark down so the face reads clearly above it */
+    transform: translateY(22vh);
   }
   .hero-word {
     display: block;
@@ -186,18 +180,10 @@
     text-transform: uppercase;
     line-height: 0.82;
     letter-spacing: -0.05em;
-    font-size: clamp(72px, 17vw, 260px);
+    font-size: clamp(64px, 16vw, 250px);
     will-change: transform;
+    color: var(--fg);
   }
-  .hero-word.filled { color: var(--fg); }
-  .hero-word.outline {
-    -webkit-text-stroke: 1px var(--fg);
-    color: transparent;
-    opacity: 0.22;
-    /* gap between the two words so the face shows through, framed */
-    margin-top: clamp(150px, 26vh, 340px);
-  }
-  /* meta bars */
   .hero-top, .hero-bottom {
     position: absolute;
     left: 0; right: 0;
@@ -215,71 +201,49 @@
     color: var(--muted); font-weight: 500; max-width: 240px;
   }
   .hero-tag {
-    font-weight: 900; font-size: 18px; color: var(--lime); letter-spacing: -0.01em;
+    font-weight: 900; font-size: 18px; color: var(--fg); letter-spacing: -0.01em;
   }
-  .hero-sub {
-    font-weight: 300; font-size: 16px; color: #aaa;
-    max-width: 340px; line-height: 1.55;
-  }
-  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
 
-  /* stats strip below hero */
-  .stats-strip { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  /* ============ HERO STATEMENT (below the fold hero copy) ============ */
+  .statement { padding: 120px 0; border-top: 1px solid var(--border); }
+  .statement-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: start; }
+  .statement-title {
+    font-weight: 900; letter-spacing: -0.04em; line-height: 0.98;
+    font-size: clamp(38px, 5.4vw, 76px);
+  }
+  .statement-title .accent { color: var(--lime); }
+  .statement-body p {
+    font-weight: 400; font-size: 18px; color: #a8a49c; line-height: 1.7;
+    margin-bottom: 32px; max-width: 480px;
+  }
 
   /* ============ BUTTONS ============ */
   .btn {
     display: inline-block;
-    font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
-    padding: 14px 28px; border: 1px solid transparent;
+    font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 15px 30px; border: 1px solid transparent;
     transition: all 0.2s ease; cursor: pointer;
   }
-  .btn-primary {
-    background: var(--lime); color: #000; font-weight: 700;
-  }
-  .btn-primary:hover { background: #d6ff6a; }
+  .btn-primary { background: var(--lime); color: #000; font-weight: 700; }
+  .btn-primary:hover { background: #d6ff45; }
   .btn-ghost {
-    background: transparent; border: 1px solid #2a2a2a; color: #666660; font-weight: 500;
+    background: transparent; border: 1px solid #2a2a2a; color: #cfccc6; font-weight: 500;
   }
   .btn-ghost:hover { border-color: #f0ede8; color: #f0ede8; }
-
-  /* ============ HERO STATS ============ */
-  .hero-stats {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-  }
-  .hero-stats .stat {
-    padding: 40px 32px;
-    border-left: 1px solid var(--border);
-    text-align: center;
-  }
-  .hero-stats .stat:first-child { border-left: none; }
-  .stat-val { font-weight: 900; font-size: 28px; letter-spacing: -0.03em; line-height: 1; }
-  .stat-label {
-    font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--muted); margin-top: 8px; font-weight: 500;
-  }
 
   /* ============ GENERIC SECTION PADDING ============ */
   .section-pad { padding: 120px 0; }
 
-  /* ============ WHY ============ */
-  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .why-title {
-    font-weight: 900; letter-spacing: -0.03em; line-height: 1;
-    font-size: clamp(40px, 5vw, 64px);
-  }
-  .why-text p { font-weight: 300; font-size: 17px; color: #888880; line-height: 1.65; margin-bottom: 24px; max-width: 480px; }
-  .why-divider { height: 1px; background: var(--border); margin: 32px 0; max-width: 480px; }
-  .pullquote {
-    font-weight: 300; font-style: italic; font-size: 20px; color: #666660;
-    line-height: 1.5; max-width: 480px;
-  }
-
   /* ============ SECTION HEADER ============ */
   .sec-head {
     display: flex; align-items: baseline; justify-content: space-between;
-    margin-bottom: 56px; border-bottom: 1px solid var(--border); padding-bottom: 24px;
+    margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 24px;
   }
   .sec-title { font-weight: 900; letter-spacing: -0.04em; font-size: clamp(34px, 5vw, 48px); }
+  .sec-intro {
+    font-weight: 400; font-size: 18px; color: #a8a49c; line-height: 1.7;
+    max-width: 640px; margin-bottom: 56px;
+  }
 
   /* ============ SERVICES ============ */
   .service {
@@ -290,75 +254,74 @@
   }
   .service:last-child { border-bottom: 1px solid var(--border); }
   .service:hover { border-top-color: #444; }
-  .service-num { font-weight: 300; font-size: 13px; color: #3d3d3d; transition: color 0.2s ease; padding-top: 6px; }
-  .service-cat {
-    font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--muted); font-weight: 500; margin-bottom: 10px;
-  }
+  .service-num { font-weight: 400; font-size: 13px; color: #3d3d3d; transition: color 0.2s ease; padding-top: 6px; }
   .service-name { font-weight: 700; font-size: 22px; letter-spacing: -0.01em; }
-  .service-desc { font-weight: 300; font-size: 15px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .tag {
-    font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
-    padding: 6px 12px; border: 1px solid var(--border); color: var(--muted); font-weight: 500;
-  }
+  .service-desc { font-weight: 400; font-size: 15px; color: var(--muted); line-height: 1.65; }
 
   /* ============ DIFERENCIAL ============ */
-  .diff-row {
-    display: grid;
-    grid-template-columns: 48px 1fr 1fr;
-    gap: 0 48px;
-    align-items: start;
-    padding: 52px 0;
-    border-top: 1px solid #1e1e1e;
+  .diff-lead {
+    font-weight: 400; font-size: clamp(22px, 2.6vw, 30px); color: #cfccc6;
+    line-height: 1.5; max-width: 820px; margin-bottom: 56px; letter-spacing: -0.01em;
   }
-  .diff-row:last-child { border-bottom: 1px solid #1e1e1e; }
-  .diff-n {
-    font-size: 13px;
-    color: #3d3d3d;
-    font-weight: 300;
-    padding-top: 8px;
+  .diff-lead .accent { color: var(--lime); }
+  .diff-item {
+    display: grid; grid-template-columns: 48px 1fr; gap: 24px; align-items: center;
+    padding: 28px 0; border-top: 1px solid var(--border);
   }
-  .diff-title {
-    font-size: clamp(32px, 3vw, 44px);
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    line-height: 0.95;
-    color: #f0ede8;
-  }
-  .diff-desc {
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.72;
-    color: #666660;
-    padding-top: 8px;
-  }
+  .diff-item:last-child { border-bottom: 1px solid var(--border); }
+  .diff-mark { color: var(--lime); font-weight: 900; font-size: 20px; line-height: 1; }
+  .diff-text { font-weight: 400; font-size: clamp(17px, 2vw, 20px); color: var(--fg); letter-spacing: -0.01em; }
 
-  /* ============ CLIENTES ============ */
-  .clients { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); }
-  .client {
-    background: transparent; border: none;
-    padding: 48px 32px; border-right: 1px solid var(--border);
-    text-align: center;
+  /* ============ CASOS DE ÉXITO ============ */
+  .case {
+    display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 48px; align-items: start;
+    padding: 64px 0; border-top: 1px solid var(--border);
   }
-  .client:last-child { border-right: none; }
-  .client-name { font-weight: 700; font-size: 18px; letter-spacing: -0.01em; margin-bottom: 12px; color: #f0ede8; }
-  .client-type { font-size: 12px; color: #3d3d3d; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; }
-  .client-name.lime { color: var(--lime); }
-
-  /* ============ SISTEMA IA ============ */
-  .ia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .ia-title { font-weight: 900; font-size: 32px; letter-spacing: -0.02em; margin-bottom: 24px; color: #f0ede8; }
-  .ia-text { font-weight: 300; font-size: 17px; color: #888880; line-height: 1.65; margin-bottom: 32px; max-width: 460px; }
-  .step {
-    display: grid; grid-template-columns: 48px 1fr; gap: 20px; align-items: center;
-    padding: 24px 0; border-top: 1px solid var(--border);
+  .case:last-child { border-bottom: 1px solid var(--border); }
+  .case-photo {
+    aspect-ratio: 4 / 3;
+    border: 1px solid var(--border);
+    background: #0d0d0d;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
   }
-  .step:last-child { border-bottom: 1px solid var(--border); }
-  .step-num { font-weight: 900; font-size: 18px; color: #3d3d3d; letter-spacing: -0.02em; }
-  .step-text { font-weight: 300; font-size: 16px; color: var(--fg); }
+  .case-photo span {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: #333;
+    font-weight: 500;
+  }
+  .case-name { font-weight: 900; font-size: clamp(26px, 3vw, 38px); letter-spacing: -0.03em; line-height: 1; }
+  .case-meta {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--lime);
+    font-weight: 500; margin: 14px 0 22px;
+  }
+  .case-desc { font-weight: 400; font-size: 16px; color: #a8a49c; line-height: 1.7; margin-bottom: 16px; }
+  .case-desc:last-child { margin-bottom: 0; }
 
-  /* ============ CONTACTO ============ */
+  /* ============ SOBRE MÍ ============ */
+  .about-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 64px; align-items: start; }
+  .about-photo {
+    border: 1px solid var(--border); background: #0d0d0d;
+    width: 100%; aspect-ratio: 4 / 5;
+    object-fit: cover; object-position: center 22%;
+  }
+  .about-name {
+    font-weight: 900; letter-spacing: -0.04em; line-height: 0.95;
+    font-size: clamp(36px, 4.6vw, 60px); margin-bottom: 8px;
+  }
+  .about-role {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--lime);
+    font-weight: 500; margin-bottom: 40px;
+  }
+  .about-body p { font-weight: 400; font-size: 17px; color: #a8a49c; line-height: 1.75; margin-bottom: 26px; max-width: 620px; }
+  .about-body p .fg { color: var(--fg); }
+  .about-pull {
+    font-weight: 500; font-size: clamp(20px, 2.4vw, 26px); color: var(--fg);
+    line-height: 1.4; letter-spacing: -0.01em; margin: 40px 0; max-width: 620px;
+  }
+  .about-pull .accent { color: var(--lime); }
+  .about-loc { font-size: 13px; color: var(--muted); font-weight: 400; }
+
+  /* ============ CTA FINAL ============ */
   #contacto { padding: 160px 0; position: relative; overflow: hidden; }
   #contacto .wrap { position: relative; z-index: 1; }
   .contact-watermark {
@@ -367,18 +330,19 @@
     opacity: 0.04; z-index: 0;
   }
   .contact-title {
-    font-weight: 900; letter-spacing: -0.04em; line-height: 0.92;
-    font-size: clamp(56px, 9vw, 100px);
+    font-weight: 900; letter-spacing: -0.04em; line-height: 0.94;
+    font-size: clamp(44px, 7vw, 92px); max-width: 900px;
   }
-  .contact-sub { font-weight: 300; font-size: 18px; color: #bdbab5; max-width: 520px; margin-top: 32px; line-height: 1.6; }
+  .contact-sub { font-weight: 400; font-size: 18px; color: #bdbab5; max-width: 520px; margin-top: 32px; line-height: 1.6; }
   .contact-ctas { display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap; }
-  .contact-note { font-size: 12px; color: var(--muted); margin-top: 28px; font-weight: 300; }
+  .contact-note { font-size: 12px; color: var(--muted); margin-top: 28px; font-weight: 400; }
 
   /* ============ FOOTER ============ */
   footer { border-top: 1px solid var(--border); padding: 40px 0; }
-  .footer-inner { display: flex; align-items: center; justify-content: space-between; }
-  .footer-left { font-weight: 500; font-size: 13px; letter-spacing: 0.02em; }
-  .footer-right { font-size: 13px; color: var(--muted); font-weight: 300; }
+  .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .footer-left { font-weight: 700; font-size: 14px; letter-spacing: -0.01em; }
+  .footer-mid { font-size: 13px; color: var(--muted); font-weight: 400; }
+  .footer-right { font-size: 13px; color: var(--muted); font-weight: 400; }
 
   /* ============ REVEAL DEFAULTS ============ */
   .reveal { opacity: 0; }
@@ -388,8 +352,9 @@
     .wrap { padding: 0 24px; }
     .nav-inner { padding: 16px 24px; }
     .nav-links { gap: 18px; }
+    .wordmark .tagline { display: none; }
 
-    /* MOBILE HERO: stacked flow layout (no overlap) */
+    /* MOBILE HERO: stacked flow layout */
     #hero {
       min-height: auto;
       flex-direction: column;
@@ -409,41 +374,25 @@
       transform: none;
       width: 72%; max-width: 290px; height: 38vh; max-height: 360px;
       margin: 0 auto;
-      /* crop the black top of the portrait so the face sits high in the box */
       object-position: center 88%;
     }
     .hero-type {
       position: static; order: 2;
       transform: none;
-      /* lift the wordmark up into the invisible black (sweater) area of the photo */
       margin-top: -13vh;
     }
-    .hero-word { font-size: clamp(48px, 15vw, 92px); }
-    .hero-word.outline { margin-top: 6px; }
-    .hero-bottom {
-      position: static; order: 3; padding: 0;
-      flex-direction: column; align-items: center; text-align: center; gap: 18px;
-    }
-    .hero-sub { max-width: 100%; font-size: 15px; text-align: center; }
-    .hero-ctas { width: 100%; }
-    .hero-ctas .btn { flex: 1 1 auto; text-align: center; }
-    .hero-stats { grid-template-columns: repeat(2, 1fr); }
-    .hero-stats .stat { padding: 28px 20px; }
-    .hero-stats .stat:nth-child(3), .hero-stats .stat:nth-child(4) { border-top: 1px solid var(--border); }
-    .hero-stats .stat:nth-child(3) { border-left: none; }
+    .hero-word { font-size: clamp(60px, 20vw, 120px); }
+    .hero-bottom { display: none; }
 
-    .section-pad { padding: 72px 0; }
-    .why-grid { grid-template-columns: 1fr; gap: 40px; }
-    .diff-row { grid-template-columns: 36px 1fr; gap: 0 16px; padding: 40px 0; }
-    .diff-row .diff-desc { grid-column: 2 / -1; padding-top: 16px; }
-    .clients { grid-template-columns: 1fr 1fr; }
-    .client { border-bottom: 1px solid var(--border); }
-    .client:nth-child(2n) { border-right: none; }
-    .ia-grid { grid-template-columns: 1fr; gap: 48px; }
-    .service { grid-template-columns: 40px 1fr; gap: 16px; }
+    .section-pad, .statement { padding: 72px 0; }
+    .statement-grid { grid-template-columns: 1fr; gap: 32px; }
+    .diff-item { grid-template-columns: 32px 1fr; gap: 14px; }
+    .case { grid-template-columns: 1fr; gap: 24px; padding: 48px 0; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .service { grid-template-columns: 40px 1fr; gap: 14px; }
     .service-desc-col { grid-column: 1 / -1; }
     #contacto { padding: 90px 0; }
-    .footer-inner { flex-direction: column; gap: 16px; align-items: flex-start; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
@@ -453,15 +402,16 @@
   <div id="cursor-blob"></div>
 
   <!-- INTRO LOADER -->
-  <div id="loader"><div class="mark">NICKIA</div></div>
+  <div id="loader"><div class="mark">NIC<span class="lime">KI</span>A</div></div>
 
   <!-- NAV -->
   <nav>
     <div class="nav-inner">
-      <a href="#hero" class="wordmark">NICKIA</a>
+      <a href="#hero" class="wordmark"><span class="wm-name">NIC<span class="lime">KI</span>A</span><span class="tagline">— Already thinking.</span></a>
       <div class="nav-links">
         <a href="#servicios">Servicios</a>
-        <a href="#clientes">Clientes</a>
+        <a href="#casos">Casos</a>
+        <a href="#sobre">Sobre mí</a>
         <a href="#contacto">Hablemos</a>
       </div>
     </div>
@@ -472,44 +422,28 @@
     <img src="nicolas.jpeg" alt="Nicolás Escobar" class="hero-photo" id="hero-photo">
 
     <div class="hero-type">
-      <span class="hero-word filled parallax-text" data-speed="-1.4">NICKIA</span>
-      <span class="hero-word outline parallax-text" data-speed="1.4">Estratega</span>
+      <span class="hero-word parallax-text" data-speed="-1.2">NIC<span class="lime">KI</span>A</span>
     </div>
 
     <div class="hero-top">
-      <span class="hero-label reveal">Estrategia de Marketing · Valencia, España</span>
-      <span class="hero-tag reveal">Already thinking.</span>
+      <span class="hero-label reveal">Marketing Strategist · Valencia, España</span>
+      <span class="hero-tag reveal">Already thinking<span class="lime">.</span></span>
     </div>
 
     <div class="hero-bottom">
-      <p class="hero-sub reveal">Ayudo a marcas, negocios y perfiles B2B a ordenar su mensaje, construir autoridad y generar resultados reales.</p>
-      <div class="hero-ctas reveal">
-        <a href="#contacto" class="btn btn-primary">Hablemos de tu proyecto</a>
-        <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
-      </div>
+      <span class="hero-label reveal">Nicolás Escobar</span>
+      <span class="hero-label reveal">Scroll ↓</span>
     </div>
   </section>
 
-  <!-- STATS STRIP -->
-  <div class="stats-strip">
-    <div class="hero-stats">
-      <div class="stat"><div class="stat-val">8+</div><div class="stat-label">Años de experiencia</div></div>
-      <div class="stat"><div class="stat-val">B2B</div><div class="stat-label">Foco estratégico</div></div>
-      <div class="stat"><div class="stat-val">IA</div><div class="stat-label">Sistema propio</div></div>
-      <div class="stat"><div class="stat-val">ES · AR</div><div class="stat-label">España y Argentina</div></div>
-    </div>
-  </div>
-
-  <!-- POR QUÉ -->
-  <section class="section-pad">
+  <!-- HERO STATEMENT -->
+  <section class="statement">
     <div class="wrap">
-      <div class="why-grid">
-        <h2 class="why-title mask-reveal">No vendés<br>productos.<br>Vendés<br>criterio.</h2>
-        <div class="why-text">
-          <p class="reveal">Llevo más de ocho años acompañando marcas y negocios en estrategia, comunicación y crecimiento. Lo que aprendí en ese tiempo es que la mayoría de los problemas de marketing no son problemas de herramientas ni de presupuesto. Son problemas de claridad.</p>
-          <p class="reveal">Mi trabajo es ordenar ese desorden. Traducir la complejidad en dirección concreta. Y construir sistemas que funcionen más allá de mi presencia constante.</p>
-          <div class="why-divider reveal"></div>
-          <p class="pullquote reveal"><em>La inteligencia artificial no reemplaza el criterio. Lo amplifica.</em></p>
+      <div class="statement-grid">
+        <h1 class="statement-title mask-reveal">El problema casi nunca es la ejecución. <span class="accent">Es que falta dirección.</span></h1>
+        <div class="statement-body">
+          <p class="reveal">Invertís en contenido y en ads. Publicás. Pero los resultados no aparecen. No porque estés haciendo mal las cosas. Sino porque nadie definió bien qué decir, a quién y para qué. Eso es lo que resuelvo.</p>
+          <a href="#contacto" class="btn btn-primary reveal">Hablemos →</a>
         </div>
       </div>
     </div>
@@ -518,8 +452,8 @@
   <!-- MARQUEE -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee-inner">
-      <span>Estrategia</span><span class="dot">—</span><span>Autoridad</span><span class="dot">—</span><span>Criterio</span><span class="dot">—</span><span>Sistemas</span><span class="dot">—</span><span>Resultados</span><span class="dot">—</span>
-      <span>Estrategia</span><span class="dot">—</span><span>Autoridad</span><span class="dot">—</span><span>Criterio</span><span class="dot">—</span><span>Sistemas</span><span class="dot">—</span><span>Resultados</span><span class="dot">—</span>
+      <span>Dirección</span><span class="dot">—</span><span>Estrategia</span><span class="dot">—</span><span>Contenido</span><span class="dot">—</span><span>Autoridad</span><span class="dot">—</span><span>Resultados</span><span class="dot">—</span>
+      <span>Dirección</span><span class="dot">—</span><span>Estrategia</span><span class="dot">—</span><span>Contenido</span><span class="dot">—</span><span>Autoridad</span><span class="dot">—</span><span>Resultados</span><span class="dot">—</span>
     </div>
   </div>
 
@@ -529,48 +463,37 @@
       <div class="outline-type watermark">Servicios</div>
       <div class="section-inner">
       <div class="sec-head">
-        <h2 class="sec-title mask-reveal">Servicios</h2>
-        <span class="caption reveal">Lo que hago</span>
+        <h2 class="sec-title mask-reveal">Lo que hago</h2>
+        <span class="caption reveal">Servicios</span>
       </div>
+      <p class="sec-intro reveal">Antes de ejecutar, hay que saber adónde ir. Trabajo con negocios y profesionales B2B que necesitan ordenar su comunicación y hacer que su marketing tenga dirección real.</p>
       <div class="services">
         <div class="service">
           <div class="service-num">01</div>
-          <div><div class="service-cat">Estrategia</div><div class="service-name">Consultoría Estratégica</div></div>
+          <div class="service-name">Fractional CMO</div>
           <div class="service-desc-col">
-            <p class="service-desc">Diagnóstico, posicionamiento y hoja de ruta de marketing. Para negocios que necesitan ordenar su mensaje y definir hacia dónde van antes de ejecutar.</p>
-            <div class="tags"><span class="tag">Diagnóstico</span><span class="tag">Posicionamiento</span><span class="tag">Roadmap</span></div>
+            <p class="service-desc">Para negocios que necesitan pensamiento estratégico sin contratar un director de marketing. Entro al equipo, entiendo el negocio y defino la dirección. Las decisiones de marketing dejan de ser intuición y empiezan a tener lógica.</p>
           </div>
         </div>
         <div class="service">
           <div class="service-num">02</div>
-          <div><div class="service-cat">Contenido</div><div class="service-name">Gestión de Redes y Contenido</div></div>
+          <div class="service-name">Inbound &amp; SEO Content</div>
           <div class="service-desc-col">
-            <p class="service-desc">Dirección estratégica de contenido para marcas y perfiles B2B. No publicaciones por publicar — contenido que construye autoridad y genera conversaciones reales.</p>
-            <div class="tags"><span class="tag">LinkedIn</span><span class="tag">Instagram</span><span class="tag">Dirección creativa</span></div>
+            <p class="service-desc">Contenido que posiciona antes de que el cliente te busque. Artículos, casos de estudio y piezas que construyen autoridad orgánica en tu sector. No es contenido por contenido. Es contenido que trabaja mientras vos no estás.</p>
           </div>
         </div>
         <div class="service">
           <div class="service-num">03</div>
-          <div><div class="service-cat">Paid Media</div><div class="service-name">Meta Ads</div></div>
+          <div class="service-name">Paid Media</div>
           <div class="service-desc-col">
-            <p class="service-desc">Campañas con criterio creativo y estratégico. Diversidad creativa, estructura optimizada para el algoritmo de 2026 y seguimiento real de resultados.</p>
-            <div class="tags"><span class="tag">Meta Ads</span><span class="tag">Diversidad creativa</span><span class="tag">Andromeda</span></div>
+            <p class="service-desc">Campañas con estructura y criterio. Meta Ads orientado a resultados reales, no a métricas de vanidad. Si no hay dirección estratégica detrás, solo quemás presupuesto.</p>
           </div>
         </div>
         <div class="service">
           <div class="service-num">04</div>
-          <div><div class="service-cat">Marca Personal</div><div class="service-name">Personal Branding</div></div>
+          <div class="service-name">Personal Branding</div>
           <div class="service-desc-col">
-            <p class="service-desc">Para profesionales y fundadores que quieren construir una marca personal que abra puertas, genere confianza y posicione su criterio en su industria.</p>
-            <div class="tags"><span class="tag">Narrativa</span><span class="tag">Contenido propio</span><span class="tag">Autoridad</span></div>
-          </div>
-        </div>
-        <div class="service">
-          <div class="service-num">05</div>
-          <div><div class="service-cat">IA Aplicada</div><div class="service-name">Consultoría IA para Negocios</div></div>
-          <div class="service-desc-col">
-            <p class="service-desc">Implementación de sistemas de inteligencia artificial en procesos de marketing, comunicación y operación. Sin promesas exageradas. Con resultados medibles.</p>
-            <div class="tags"><span class="tag">Sistemas IA</span><span class="tag">Automatización</span><span class="tag">Integración</span></div>
+            <p class="service-desc">Para fundadores y profesionales que necesitan que su nombre abra puertas. Narrativa, contenido y posicionamiento que construyen autoridad sin depender de la red de contactos de siempre.</p>
           </div>
         </div>
       </div>
@@ -582,84 +505,124 @@
   <section id="diferencial" class="section-pad">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="sec-title mask-reveal">Diferencial</h2>
-        <span class="caption reveal">Cómo trabajo</span>
+        <h2 class="sec-title mask-reveal">Por qué es diferente</h2>
+        <span class="caption reveal">Diferencial</span>
       </div>
+      <p class="diff-lead reveal">No ejecuto primero y pregunto después. Antes de cualquier campaña, post o anuncio, hay una pregunta que muy pocos se hacen: <span class="accent">¿esto tiene dirección o solo tiene movimiento?</span></p>
       <div class="diff-list">
-        <div class="diff-row reveal">
-          <span class="diff-n">01</span>
-          <h3 class="diff-title">Estrategia antes<br>que ejecución.</h3>
-          <p class="diff-desc">No soy una agencia de volumen. Trabajo con pocos clientes, bien, y con foco en el resultado de negocio — no en métricas de vanidad.</p>
-        </div>
-        <div class="diff-row reveal">
-          <span class="diff-n">02</span>
-          <h3 class="diff-title">Contexto antes<br>de acción.</h3>
-          <p class="diff-desc">No ejecuto sin entender la situación real. Cada decisión parte de un diagnóstico claro, no de suposiciones ni tendencias genéricas.</p>
-        </div>
-        <div class="diff-row reveal">
-          <span class="diff-n">03</span>
-          <h3 class="diff-title">Sistemas, no<br>piezas sueltas.</h3>
-          <p class="diff-desc">Pienso en procesos replicables y frameworks escalables. No en acciones aisladas que dependen de mi presencia constante.</p>
-        </div>
-        <div class="diff-row reveal">
-          <span class="diff-n">04</span>
-          <h3 class="diff-title">Marketing conectado<br>al negocio.</h3>
-          <p class="diff-desc">El marketing no es comunicación decorativa. Es la herramienta que conecta la propuesta de valor de un negocio con sus objetivos reales.</p>
-        </div>
+        <div class="diff-item reveal"><span class="diff-mark">—</span><p class="diff-text">Leo el contexto antes de proponer soluciones.</p></div>
+        <div class="diff-item reveal"><span class="diff-mark">—</span><p class="diff-text">Conecto comunicación con objetivos de negocio reales.</p></div>
+        <div class="diff-item reveal"><span class="diff-mark">—</span><p class="diff-text">Uso IA como sistema interno, no como promesa de venta.</p></div>
+        <div class="diff-item reveal"><span class="diff-mark">—</span><p class="diff-text">Trabajo en España y Argentina, con experiencia en ambos mercados.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- CLIENTES -->
-  <section id="clientes" class="section-pad">
+  <!-- CASOS DE ÉXITO -->
+  <section id="casos" class="section-pad">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="sec-title mask-reveal">Clientes</h2>
-        <span class="caption reveal">Con quién trabajo</span>
+        <h2 class="sec-title mask-reveal">Trabajo real</h2>
+        <span class="caption reveal">Casos de éxito</span>
       </div>
-      <div class="clients">
-        <div class="client reveal"><div class="client-name">Flama Eyewear</div><div class="client-type">B2B · Óptica independiente</div></div>
-        <div class="client reveal"><div class="client-name">Daniel Marín</div><div class="client-type">Marca personal · Profesional</div></div>
-        <div class="client reveal"><div class="client-name">Feet Up Group</div><div class="client-type">Negocio · Servicios</div></div>
-        <div class="client reveal"><div class="client-name lime">Tu negocio</div><div class="client-type">El próximo proyecto</div></div>
-      </div>
-    </div>
-  </section>
+      <div class="cases">
 
-  <!-- SISTEMA IA -->
-  <section id="ia" class="section-pad">
-    <div class="wrap">
-      <div class="ia-grid">
-        <div>
-          <h3 class="ia-title reveal">Sistema propio con IA</h3>
-          <p class="ia-text reveal">Trabajo con un sistema de agentes de inteligencia artificial que me permite operar con más velocidad, consistencia y foco estratégico. El resultado para el cliente: menos fricciones, más claridad, entrega más rápida.</p>
-          <div class="tags reveal">
-            <span class="tag">Claude API</span><span class="tag">OpenClaw</span><span class="tag">Notion</span>
-            <span class="tag">Meta API</span><span class="tag">ElevenLabs</span><span class="tag">Higgsfield</span>
+        <div class="case reveal">
+          <div class="case-photo"><span>Espacio para foto</span></div>
+          <div class="case-text">
+            <h3 class="case-name">Flama Eyewear</h3>
+            <div class="case-meta">B2B · Óptica · España</div>
+            <p class="case-desc">Llegaron con comunicación orientada al consumidor final en un negocio que vende a profesionales del sector. Redefinimos la estrategia hacia B2B, construimos contenido para el canal correcto y estructuramos las campañas sobre esa base.</p>
+            <p class="case-desc">Diseñé e implementé un sistema de contenido inbound orientado a B2B sin depender de plataformas como HubSpot.</p>
           </div>
         </div>
-        <div class="ia-steps">
-          <div class="step reveal"><div class="step-num">01</div><div class="step-text">Brief del cliente vía Telegram</div></div>
-          <div class="step reveal"><div class="step-num">02</div><div class="step-text">Análisis estratégico con IA</div></div>
-          <div class="step reveal"><div class="step-num">03</div><div class="step-text">Producción de contenido / campaña</div></div>
-          <div class="step reveal"><div class="step-num">04</div><div class="step-text">Revisión y criterio humano</div></div>
-          <div class="step reveal"><div class="step-num">05</div><div class="step-text">Entrega y seguimiento</div></div>
+
+        <div class="case reveal">
+          <div class="case-photo"><span>Espacio para foto</span></div>
+          <div class="case-text">
+            <h3 class="case-name">Fūmi</h3>
+            <div class="case-meta">Cafetería de especialidad · España</div>
+            <p class="case-desc">Sin nombre, sin redes, sin comunidad. Construimos la marca completa desde cero: concepto, narrativa, identidad y comunicación mensual.</p>
+            <p class="case-desc">Un año y medio después es una marca reconocida localmente con comunidad activa.</p>
+          </div>
+        </div>
+
+        <div class="case reveal">
+          <div class="case-photo"><span>Espacio para foto</span></div>
+          <div class="case-text">
+            <h3 class="case-name">AMAS</h3>
+            <div class="case-meta">Clínica estética · España</div>
+            <p class="case-desc">Invertían en performance sin estrategia de comunicación detrás. Las campañas funcionaban de forma aislada pero sin narrativa que las sostuviera.</p>
+            <p class="case-desc">Integramos los dos niveles y ahora apuntan en la misma dirección.</p>
+          </div>
+        </div>
+
+        <div class="case reveal">
+          <div class="case-photo"><span>Espacio para foto</span></div>
+          <div class="case-text">
+            <h3 class="case-name">Axor Helmets</h3>
+            <div class="case-meta">Marca internacional · Argentina</div>
+            <p class="case-desc">La marca existía globalmente pero no en Argentina. Lideramos el lanzamiento local: posicionamiento, estrategia de comunicación adaptada al mercado y estructura del equipo de ejecución.</p>
+          </div>
+        </div>
+
+        <div class="case reveal">
+          <div class="case-photo"><span>Espacio para foto</span></div>
+          <div class="case-text">
+            <h3 class="case-name">Vértigo</h3>
+            <div class="case-meta">Líder en cascos · Argentina</div>
+            <p class="case-desc">Cinco años de trabajo en estrategia de comunicación para la marca de cascos más grande de Argentina. Cuando ya sos líder, el desafío es sostener ese lugar con una narrativa que lo justifique.</p>
+          </div>
+        </div>
+
+        <div class="case reveal">
+          <div class="case-photo"><span>Espacio para foto</span></div>
+          <div class="case-text">
+            <h3 class="case-name">Curador</h3>
+            <div class="case-meta">Importador de café verde · España</div>
+            <p class="case-desc">Curador nació como un ecommerce B2C de café de especialidad. El negocio evolucionó: pasaron a ser importadores de grano verde para tostadores profesionales en Europa y a ofrecer experiencias de catas. El modelo cambió completamente, pero la comunicación no lo había acompañado.</p>
+            <p class="case-desc">Reorientamos la estrategia de comunicación y marca para reflejar ese nuevo posicionamiento: de tienda de café a referente B2B en importación de origen y formación sensorial. Definimos pilares de marca, dirección de contenido y acompañamiento estratégico para que cada canal comunicara el nuevo lugar del negocio.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section id="sobre" class="section-pad">
+    <div class="wrap">
+      <div class="about-grid">
+        <div>
+          <img src="nicolas.png" alt="Nicolás Escobar" class="about-photo reveal">
+        </div>
+        <div>
+          <h2 class="about-name mask-reveal">Nicolás Escobar</h2>
+          <div class="about-role reveal">Marketing Strategist</div>
+          <div class="about-body">
+            <p class="reveal">Fundé <span class="fg">tep agency</span> en 2018. Durante 8 años construí una agencia creativa de comunicación y marketing que llegó a un equipo de 20 personas: diseño gráfico, social media, paid media, audiovisual y programación.</p>
+            <p class="reveal">Trabajé con más de 30 marcas en Argentina y España. Empresas de servicios profesionales, fábricas, industrias B2B y marcas de consumo. Clientes muy distintos con un problema en común: necesitaban que su comunicación tuviera dirección.</p>
+            <p class="reveal">En paralelo, co-fundé <span class="fg">Lacreme</span> en 2021, una marca de moda streetwear en Rosario donde sigo siendo socio y responsable del marketing de performance y comunicación.</p>
+            <p class="reveal">Lo que aprendí en ese tiempo es que el mayor problema de las marcas no es la ejecución. Es que nadie entiende bien qué quieren comunicar ni a quién.</p>
+            <p class="about-pull reveal">Eso es lo que hago: entender lo que el cliente necesita decir <span class="accent">antes de que sepa cómo decirlo.</span></p>
+            <p class="reveal">La inteligencia artificial no reemplaza el criterio. Lo amplifica.</p>
+            <div class="about-loc reveal">Valencia, España · También trabajo con clientes en Argentina</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACTO -->
+  <!-- CTA FINAL -->
   <section id="contacto">
     <div class="outline-type contact-watermark" aria-hidden="true">NICKIA</div>
     <div class="wrap">
-      <h2 class="contact-title mask-reveal">Hablemos de<br><span class="lime">tu proyecto.</span></h2>
-      <p class="contact-sub reveal">Si tu negocio necesita ordenar su mensaje, construir autoridad o escalar resultados, estoy disponible para nuevos proyectos.</p>
+      <h2 class="contact-title mask-reveal">¿Tu marketing tiene <span class="lime">dirección real?</span></h2>
+      <p class="contact-sub reveal">Si llegaste hasta acá, probablemente ya sabés la respuesta. Hablemos.</p>
       <div class="contact-ctas reveal">
-        <a href="https://t.me/escobarrnicolas" target="_blank" rel="noopener" class="btn btn-primary">Escribime por Telegram</a>
-        <a href="mailto:hola@nicolasescobar.com" class="btn btn-ghost">hola@nicolasescobar.com</a>
+        <a href="https://t.me/escobarrnicolas" target="_blank" rel="noopener" class="btn btn-primary">Hablemos →</a>
       </div>
-      <div class="contact-note reveal">Respondo en menos de 24h · Valencia, España</div>
+      <div class="contact-note reveal">Valencia, España · También trabajo con clientes en Argentina</div>
     </div>
   </section>
 
@@ -667,8 +630,9 @@
   <footer>
     <div class="wrap">
       <div class="footer-inner">
-        <div class="footer-left">NICKIA · Already thinking.</div>
-        <div class="footer-right">© 2026 · Valencia, España</div>
+        <div class="footer-left">NIC<span class="lime">KI</span>A — Already thinking<span class="lime">.</span></div>
+        <div class="footer-mid">Nicolás Escobar · Marketing Strategist</div>
+        <div class="footer-right">Valencia, España · 2026</div>
       </div>
     </div>
   </footer>
@@ -688,7 +652,7 @@
       blob.style.display = 'none';
     } else {
       let bx = window.innerWidth / 2, by = window.innerHeight / 2;
-      const half = 230; // half of blob size (460)
+      const half = 230;
       const quickX = gsap.quickTo(blob, 'x', { duration: 0.5, ease: 'power3' });
       const quickY = gsap.quickTo(blob, 'y', { duration: 0.5, ease: 'power3' });
       gsap.set(blob, { xPercent: 0, yPercent: 0, x: bx - half, y: by - half });
@@ -698,7 +662,7 @@
       });
     }
 
-    // ---------- MASK REVEAL (wrap inner, slide up from below) ----------
+    // ---------- MASK REVEAL ----------
     gsap.utils.toArray('.mask-reveal').forEach(el => {
       const inner = document.createElement('span');
       inner.className = 'mask-inner';
@@ -731,7 +695,6 @@
     // ---------- HERO REVEAL ----------
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-    // initial states (desktop centers the photo via xPercent/yPercent; mobile is stacked flow)
     if (isMobile) {
       gsap.set('.hero-photo', { opacity: 0, scale: 1.03 });
     } else {
@@ -743,18 +706,16 @@
     function introHero() {
       const tl = gsap.timeline();
       tl.to('.hero-photo', { opacity: 1, scale: 1, duration: 1.1, ease: 'power3.out' })
-        .to('.hero-word', { opacity: 1, y: 0, duration: 0.9, stagger: 0.08, ease: 'power4.out' }, '-=0.8')
+        .to('.hero-word', { opacity: 1, y: 0, duration: 0.9, ease: 'power4.out' }, '-=0.8')
         .to('#hero .reveal', { opacity: 1, y: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out' }, '-=0.5');
     }
 
-    // ---------- PARALLAX (desktop only — breaks the stacked mobile layout) ----------
+    // ---------- PARALLAX (desktop only) ----------
     if (!isMobile) {
-      // photo vertical
       gsap.to('.hero-photo', {
         y: '18%', ease: 'none',
         scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
       });
-      // type horizontal, opposite directions
       gsap.utils.toArray('.parallax-text').forEach(el => {
         const speed = parseFloat(el.getAttribute('data-speed')) || 0;
         gsap.to(el, {
@@ -765,7 +726,6 @@
     }
 
     // ---------- GENERIC SCROLL REVEALS ----------
-    // Titles & blocks rise from below with stagger
     gsap.utils.toArray('section:not(#hero)').forEach(sec => {
       const items = sec.querySelectorAll('.reveal');
       if (!items.length) return;
@@ -778,7 +738,7 @@
       );
     });
 
-    // ---------- LIST ITEMS (services / steps / clients) sequential ----------
+    // ---------- LIST ITEMS sequential ----------
     function staggerList(selector, parent) {
       gsap.utils.toArray(parent).forEach(p => {
         const rows = p.querySelectorAll(selector);
@@ -792,16 +752,6 @@
       });
     }
     staggerList('.service', '.services');
-    staggerList('.step', '.ia-steps');
-
-    // ---------- STATS STRIP reveal ----------
-    gsap.fromTo('.hero-stats .stat',
-      { opacity: 0, y: 24 },
-      {
-        opacity: 1, y: 0, duration: 0.7, stagger: 0.08, ease: 'power2.out',
-        scrollTrigger: { trigger: '.stats-strip', start: 'top 88%' }
-      }
-    );
   </script>
 </body>
 </html>
