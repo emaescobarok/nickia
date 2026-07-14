@@ -155,11 +155,11 @@
   }
   .hero-photo {
     position: absolute;
-    top: 36%; left: 50%;
+    top: 44%; left: 50%;
     transform: translate(-50%, -50%);
-    width: clamp(400px, 56vw, 820px);
-    height: clamp(600px, 122vh, 1220px);
-    object-fit: cover; object-position: center top;
+    width: clamp(320px, 40vw, 560px);
+    height: clamp(500px, 92vh, 920px);
+    object-fit: cover; object-position: center 30%;
     mix-blend-mode: lighten;
     z-index: 1;
     will-change: transform;
@@ -172,7 +172,7 @@
     text-align: center;
     pointer-events: none;
     /* push the wordmark down so the face reads clearly above it */
-    transform: translateY(22vh);
+    transform: translateY(23vh);
   }
   .hero-word {
     display: block;
@@ -180,7 +180,7 @@
     text-transform: uppercase;
     line-height: 0.82;
     letter-spacing: -0.05em;
-    font-size: clamp(64px, 16vw, 250px);
+    font-size: clamp(56px, 13vw, 200px);
     will-change: transform;
     color: var(--fg);
   }
